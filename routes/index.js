@@ -14,7 +14,8 @@ route.get("/", (req, res) => {
   route.post("/users/login", AuthControllers.Login);
 
  // todo
- route.get("/todo/getall",authentication, TodosControllers.getAll);
+ route.get("/todo/getall",authentication, TodosControllers.getData);
+ route.post("/todo/insert",authentication, TodosControllers.insert);
 
 
   module.exports = route
