@@ -47,12 +47,12 @@ class TodoControllers{
         });
     }
 
-    static update(req,res){
+    static updateData(req,res){
         const user = res.locals.user;
          let id = req.params.id;
         let input = {
-            title: result.title,
-            description: result.description,
+            title: req.body.title,
+            description: req.body.description,
 		};
         Todos.update(
             input,
@@ -66,7 +66,7 @@ class TodoControllers{
         )
         .then(result => {
             res.status(200).json({
-                Todos: result[1][0]
+                Todos: result
             });
         })
         .catch(err => {
@@ -86,7 +86,7 @@ class TodoControllers{
             }
         })
         .then(result => {
-            result.status(200).json({ message: "Your Todos has been successfully deleted" });
+            res.status(200).json({ message: "Your Todos has been successfully deleted" });
         })
         .catch(err => {
             res.status(500).json(err);
