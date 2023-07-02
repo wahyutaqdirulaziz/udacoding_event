@@ -29,7 +29,12 @@ class AuthControllers{
     static Login(req, res) {
         let password = req.body.password;
         let email = req.body.email;
-        User.findOne({ email: email}).then(data=>{
+        console.log(email);
+        User.findOne({
+            where: {
+                email
+            }
+        }).then(data=>{
             if(!data){
                 res.status(401).json({ message: "Invalid Credentials" });
             }else{
@@ -42,6 +47,7 @@ class AuthControllers{
                         lastName : data.lastName,
                         firstName :data.firstName
                     }
+                    console.log(payload);
                     const token = generateToken(payload);
                     res.status(200).json({
                         token: token

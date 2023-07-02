@@ -4,9 +4,9 @@ const {Todos,User} = require('../models');
 class TodoControllers{
     static getData(req,res){
         const user = res.locals.user;
+        console.log(user.id);
         Todos.findAll({
             where: { users_id: user.id },
-         
         })
         .then(result => {
             if (result == "") {
